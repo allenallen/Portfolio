@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StockXDataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="StockXDataBaseEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientAverageCosts" EntityType="StockXDataBaseModel.ClientAverageCost" />
+    <EntitySet Name="MatchedOrders" EntityType="StockXDataBaseModel.MatchedOrder" />
+    <EntitySet Name="Summaries" EntityType="StockXDataBaseModel.Summary" />
+    <EntitySet Name="PosCosts" EntityType="StockXDataBaseModel.PosCost" />
+  </EntityContainer>
+  <EntityType Name="ClientAverageCost">
+    <Key>
+      <PropertyRef Name="ClientAverageCostID" />
+    </Key>
+    <Property Type="String" Name="Date" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Side" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Cost" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="Volume" />
+    <Property Type="Int32" Name="NetVolume" />
+    <Property Type="Decimal" Name="BuyPrice" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="SellPrice" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="AverageCost" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="ClientAverageCostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="SumOfNetPrice" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="MatchedOrder">
+    <Key>
+      <PropertyRef Name="MatchedOrderID" />
+    </Key>
+    <Property Type="Int32" Name="MatchedOrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserId" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="OrderDatetime" Precision="3" />
+    <Property Type="String" Name="Side" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BoardLot" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StockCode" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Price" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="Quantity" />
+    <Property Type="String" Name="MatchDate" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Summary">
+    <Key>
+      <PropertyRef Name="SummaryID" />
+    </Key>
+    <Property Type="Int32" Name="SummaryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserId" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StockCode" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BoardLot" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="AveragePriceBuy" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="AveragePriceSell" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="NetQuantity" />
+  </EntityType>
+  <EntityType Name="PosCost">
+    <Key>
+      <PropertyRef Name="PosCostID" />
+    </Key>
+    <Property Type="Int32" Name="PosCostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StockCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Volume" />
+    <Property Type="Decimal" Name="AverageCost" Precision="19" Scale="4" />
+  </EntityType>
+</Schema>

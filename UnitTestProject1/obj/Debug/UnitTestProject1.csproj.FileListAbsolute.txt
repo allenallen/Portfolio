@@ -1,0 +1,7 @@
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\bin\Debug\PortfolioController.dll
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\bin\Debug\PortfolioController.pdb
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\obj\Debug\UnitTestProject1.csprojResolveAssemblyReference.cache
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\UnitTestProject1\obj\Debug\UnitTestProject1.pdb

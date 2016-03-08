@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StockXDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="StockXDataBaseModelStoreContainer">
+          <EntitySet Name="ClientAverageCost" EntityType="StockXDataBaseModel.Store.ClientAverageCost" store:Type="Tables" />
+          <EntitySet Name="MatchedOrder" EntityType="StockXDataBaseModel.Store.MatchedOrder" store:Type="Tables" />
+          <EntitySet Name="PosCost" EntityType="StockXDataBaseModel.Store.PosCost" store:Type="Tables" />
+          <EntitySet Name="Summary" EntityType="StockXDataBaseModel.Store.Summary" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="ClientAverageCost">
+          <Key>
+            <PropertyRef Name="ClientAverageCostID" />
+          </Key>
+          <Property Name="Side" Type="nvarchar" MaxLength="8" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="Volume" Type="int" />
+          <Property Name="NetVolume" Type="int" />
+          <Property Name="BuyPrice" Type="money" />
+          <Property Name="SellPrice" Type="money" />
+          <Property Name="AverageCost" Type="money" />
+          <Property Name="ClientAverageCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="nvarchar" MaxLength="100" />
+          <Property Name="SumOfNetPrice" Type="money" />
+        </EntityType>
+        <EntityType Name="MatchedOrder">
+          <Key>
+            <PropertyRef Name="MatchedOrderID" />
+          </Key>
+          <Property Name="MatchedOrderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Side" Type="nvarchar" MaxLength="8" />
+          <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="OrderDatetime" Type="datetime" />
+          <Property Name="MatchDate" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PosCost">
+          <Key>
+            <PropertyRef Name="PosCostID" />
+          </Key>
+          <Property Name="PosCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Volume" Type="int" />
+          <Property Name="AverageCost" Type="money" />
+        </EntityType>
+        <EntityType Name="Summary">
+          <Key>
+            <PropertyRef Name="SummaryID" />
+          </Key>
+          <Property Name="SummaryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
+          <Property Name="AveragePriceBuy" Type="money" />
+          <Property Name="AveragePriceSell" Type="money" />
+          <Property Name="NetQuantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+            warning 6013: The table/view 'test' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+            
+            <EntityType Name="test">
+              <Property Name="test" Type="nvarchar" MaxLength="100" />
+            </EntityType>-->
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockXDataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StockXDataBaseEntities" p1:LazyLoadingEnabled="true" >
+          <EntitySet Name="ClientAverageCosts" EntityType="StockXDataBaseModel.ClientAverageCost" />
+          <EntitySet Name="MatchedOrders" EntityType="StockXDataBaseModel.MatchedOrder" />
+          <EntitySet Name="Summaries" EntityType="StockXDataBaseModel.Summary" />
+          <EntitySet Name="PosCosts" EntityType="StockXDataBaseModel.PosCost" />
+        </EntityContainer>
+        <EntityType Name="ClientAverageCost">
+          <Key>
+            <PropertyRef Name="ClientAverageCostID" />
+          </Key>
+          <Property Type="String" Name="Date" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Side" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Cost" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="Volume" />
+          <Property Type="Int32" Name="NetVolume" />
+          <Property Type="Decimal" Name="BuyPrice" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="SellPrice" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="AverageCost" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="ClientAverageCostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="SumOfNetPrice" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="MatchedOrder">
+          <Key>
+            <PropertyRef Name="MatchedOrderID" />
+          </Key>
+          <Property Type="Int32" Name="MatchedOrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserId" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="OrderDatetime" Precision="3" />
+          <Property Type="String" Name="Side" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BoardLot" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StockCode" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="Quantity" />
+          <Property Type="String" Name="MatchDate" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Summary">
+          <Key>
+            <PropertyRef Name="SummaryID" />
+          </Key>
+          <Property Type="Int32" Name="SummaryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserId" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StockCode" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BoardLot" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="AveragePriceBuy" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="AveragePriceSell" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="NetQuantity" />
+        </EntityType>
+        <EntityType Name="PosCost">
+          <Key>
+            <PropertyRef Name="PosCostID" />
+          </Key>
+          <Property Type="Int32" Name="PosCostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StockCode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Volume" />
+          <Property Type="Decimal" Name="AverageCost" Precision="19" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockXDataBaseModelStoreContainer" CdmEntityContainer="StockXDataBaseEntities" >
+          <EntitySetMapping Name="ClientAverageCosts">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.ClientAverageCost">
+              <MappingFragment StoreEntitySet="ClientAverageCost">
+                <ScalarProperty Name="SumOfNetPrice" ColumnName="SumOfNetPrice" />
+                <ScalarProperty Name="ClientAverageCostID" ColumnName="ClientAverageCostID" />
+                <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="NetVolume" ColumnName="NetVolume" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchedOrders">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.MatchedOrder">
+              <MappingFragment StoreEntitySet="MatchedOrder">
+                <ScalarProperty Name="MatchDate" ColumnName="MatchDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="OrderDatetime" ColumnName="OrderDatetime" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Summaries">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.Summary">
+              <MappingFragment StoreEntitySet="Summary">
+                <ScalarProperty Name="NetQuantity" ColumnName="NetQuantity" />
+                <ScalarProperty Name="AveragePriceSell" ColumnName="AveragePriceSell" />
+                <ScalarProperty Name="AveragePriceBuy" ColumnName="AveragePriceBuy" />
+                <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SummaryID" ColumnName="SummaryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosCosts">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.PosCost">
+              <MappingFragment StoreEntitySet="PosCost">
+                <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="PosCostID" ColumnName="PosCostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

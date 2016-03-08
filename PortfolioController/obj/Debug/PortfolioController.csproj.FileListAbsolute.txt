@@ -1,0 +1,14 @@
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\PortfolioController.dll
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\PortfolioController.pdb
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\obj\Debug\PortfolioController.csprojResolveAssemblyReference.cache
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\obj\Debug\PortfolioController.dll
+C:\Users\cmoreno\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\obj\Debug\PortfolioController.pdb
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\PortfolioController.dll
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\PortfolioController.pdb
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\obj\Debug\PortfolioController.csprojResolveAssemblyReference.cache
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\obj\Debug\PortfolioController.dll
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\obj\Debug\PortfolioController.pdb
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\PortfolioController.dll.config
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\EntityFramework.dll
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\EntityFramework.xml
+C:\Users\OJT\Documents\Visual Studio 2012\Projects\Portfolio\PortfolioController\bin\Debug\StockXDataBase.sdf

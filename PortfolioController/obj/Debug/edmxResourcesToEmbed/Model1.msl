@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StockXDataBaseModelStoreContainer" CdmEntityContainer="StockXDataBaseEntities">
+    <EntitySetMapping Name="ClientAverageCosts">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.ClientAverageCost">
+        <MappingFragment StoreEntitySet="ClientAverageCost">
+          <ScalarProperty Name="SumOfNetPrice" ColumnName="SumOfNetPrice" />
+          <ScalarProperty Name="ClientAverageCostID" ColumnName="ClientAverageCostID" />
+          <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+          <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+          <ScalarProperty Name="NetVolume" ColumnName="NetVolume" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Side" ColumnName="Side" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatchedOrders">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.MatchedOrder">
+        <MappingFragment StoreEntitySet="MatchedOrder">
+          <ScalarProperty Name="MatchDate" ColumnName="MatchDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+          <ScalarProperty Name="Side" ColumnName="Side" />
+          <ScalarProperty Name="OrderDatetime" ColumnName="OrderDatetime" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Summaries">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.Summary">
+        <MappingFragment StoreEntitySet="Summary">
+          <ScalarProperty Name="NetQuantity" ColumnName="NetQuantity" />
+          <ScalarProperty Name="AveragePriceSell" ColumnName="AveragePriceSell" />
+          <ScalarProperty Name="AveragePriceBuy" ColumnName="AveragePriceBuy" />
+          <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SummaryID" ColumnName="SummaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosCosts">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.PosCost">
+        <MappingFragment StoreEntitySet="PosCost">
+          <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="PosCostID" ColumnName="PosCostID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

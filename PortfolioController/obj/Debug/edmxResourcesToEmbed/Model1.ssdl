@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StockXDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StockXDataBaseModelStoreContainer">
+    <EntitySet Name="ClientAverageCost" EntityType="StockXDataBaseModel.Store.ClientAverageCost" store:Type="Tables" />
+    <EntitySet Name="MatchedOrder" EntityType="StockXDataBaseModel.Store.MatchedOrder" store:Type="Tables" />
+    <EntitySet Name="PosCost" EntityType="StockXDataBaseModel.Store.PosCost" store:Type="Tables" />
+    <EntitySet Name="Summary" EntityType="StockXDataBaseModel.Store.Summary" store:Type="Tables" />
+  </EntityContainer>
+  <EntityType Name="ClientAverageCost">
+    <Key>
+      <PropertyRef Name="ClientAverageCostID" />
+    </Key>
+    <Property Name="Side" Type="nvarchar" MaxLength="8" />
+    <Property Name="Cost" Type="money" />
+    <Property Name="Volume" Type="int" />
+    <Property Name="NetVolume" Type="int" />
+    <Property Name="BuyPrice" Type="money" />
+    <Property Name="SellPrice" Type="money" />
+    <Property Name="AverageCost" Type="money" />
+    <Property Name="ClientAverageCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="nvarchar" MaxLength="100" />
+    <Property Name="SumOfNetPrice" Type="money" />
+  </EntityType>
+  <EntityType Name="MatchedOrder">
+    <Key>
+      <PropertyRef Name="MatchedOrderID" />
+    </Key>
+    <Property Name="MatchedOrderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="100" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Side" Type="nvarchar" MaxLength="8" />
+    <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
+    <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="OrderDatetime" Type="datetime" />
+    <Property Name="MatchDate" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PosCost">
+    <Key>
+      <PropertyRef Name="PosCostID" />
+    </Key>
+    <Property Name="PosCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="StockCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Volume" Type="int" />
+    <Property Name="AverageCost" Type="money" />
+  </EntityType>
+  <EntityType Name="Summary">
+    <Key>
+      <PropertyRef Name="SummaryID" />
+    </Key>
+    <Property Name="SummaryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="100" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
+    <Property Name="AveragePriceBuy" Type="money" />
+    <Property Name="AveragePriceSell" Type="money" />
+    <Property Name="NetQuantity" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+            warning 6013: The table/view 'test' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+            
+            <EntityType Name="test">
+              <Property Name="test" Type="nvarchar" MaxLength="100" />
+            </EntityType>-->
+</Schema>
