@@ -57,6 +57,7 @@ namespace PortfolioController
 
                     CheckIfPortfolioExistsThenAdd(dbContext,portfolioEntry);
                 }
+                
             }
         }
 

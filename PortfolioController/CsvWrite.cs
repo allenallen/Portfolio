@@ -211,6 +211,26 @@ namespace PortfolioController
 
 
         }
+
+        internal static void WriteLeaders(List<Leaderboard> list)
+        {
+            var d = DateTime.Now.ToString("M-dd-yyyy");
+            string path1 = String.Format(ConfigurationManager.AppSettings["leaderboardTxtFile"].ToString() + "leaderboard-{0}.txt", d);
+            string delimiter = ";";
+            StringBuilder sb = new StringBuilder();
+            
+            foreach (var m in list)
+            {
+                sb.Append(m.AccountCode);
+                sb.Append(delimiter);
+                sb.Append(m.Capital);
+                sb.Append(delimiter);
+                sb.AppendLine(m.PnL.ToString());
+            }
+            sb.AppendLine("");
+            sb.AppendLine("");
+            AppendToFile(System.Environment.ExpandEnvironmentVariables(path1), sb.ToString());
+        }
     }
 
     //public class Calculator

@@ -15,6 +15,7 @@ namespace PortfolioController
             //combine leader board with client with inner join 
             List<Leaderboard> leaders = new List<Leaderboard>();
             List<Portfolio> pos = PortfolioManager.GetPortfolioList();
+
             foreach(var client in list){
                 leaders.Add( CalculateScore(client,pos));
             }
@@ -43,7 +44,7 @@ namespace PortfolioController
             var posByAccount = (from match in pos
                                      where match.AccountCode == c.AccountCode
                                      select match).ToList();
-            
+            //if (posByAccount.Count == 0) return null;
             decimal? amount = 0M;
 
             foreach (var item in posByAccount)
@@ -58,7 +59,10 @@ namespace PortfolioController
                 var accountCash = (from acct in dbContext.Cash
                                    where acct.AccountCode == c.AccountCode
                                    select acct).SingleOrDefault();
-                cash = accountCash.Amount;
+                if (accountCash != null)
+                {
+                    cash = accountCash.Amount;
+                }
             }
 
             decimal? total = cash + amount;
@@ -74,6 +78,10 @@ namespace PortfolioController
 
             //}
             return l;
+        }
+        public static void GenerateLeadersFile(List<Leaderboard> list)
+        {
+            CsvWrite.WriteLeaders(list);
         }
     }
 }

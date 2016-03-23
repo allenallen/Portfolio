@@ -24,7 +24,7 @@ namespace PortfolioController
             using (SqlConnection connection =
             new SqlConnection(connectionString))
             {
-                string query = File.ReadAllText(@"C:\Users\OJT\Documents\SQL Server Management Studio\Projects\Report1.sql");
+                string query = File.ReadAllText(ConfigurationManager.AppSettings["TechniFilledRecordsSQL"].ToString());
                 // Create the Command and Parameter objects.
                 SqlCommand command = new SqlCommand(query, connection);
                 Console.WriteLine("Connection succeeded");
@@ -872,7 +872,6 @@ namespace PortfolioController
             {
                 var cash = from match in dbContext.Cash select match;
                 return cash.ToList();
-                
             }
         }
         public void HandleLastRecord(string accountCode, string stockCode, DateTime baseDate, List<MatchedOrder> currentList)
@@ -914,7 +913,7 @@ namespace PortfolioController
                 dbContext.SaveChanges();
             }
         }
-        public void SaveLeaderList(List<Leaderboard> list)
+        public void SaveLeaderListAndGenerateFile(List<Leaderboard> list)
         {
             using(var dbContext = new StockXDataBaseEntities())
             {
@@ -933,7 +932,7 @@ namespace PortfolioController
                     }
                     dbContext.SaveChanges();
                 }
-               
+                LeaderBoardManager.GenerateLeadersFile(list);
             }
         }
     }
