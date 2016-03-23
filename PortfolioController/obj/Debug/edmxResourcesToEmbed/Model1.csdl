@@ -2,9 +2,14 @@
 <Schema Namespace="StockXDataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="StockXDataBaseEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="ClientAverageCosts" EntityType="StockXDataBaseModel.ClientAverageCost" />
-    <EntitySet Name="MatchedOrders" EntityType="StockXDataBaseModel.MatchedOrder" />
     <EntitySet Name="Summaries" EntityType="StockXDataBaseModel.Summary" />
     <EntitySet Name="PosCosts" EntityType="StockXDataBaseModel.PosCost" />
+    <EntitySet Name="MatchedOrders" EntityType="StockXDataBaseModel.MatchedOrder" />
+    <EntitySet Name="Cashes" EntityType="StockXDataBaseModel.Cash" />
+    <EntitySet Name="CashHistories" EntityType="StockXDataBaseModel.CashHistory" />
+    <EntitySet Name="Clients" EntityType="StockXDataBaseModel.Client" />
+    <EntitySet Name="Portfolios" EntityType="StockXDataBaseModel.Portfolio" />
+    <EntitySet Name="Leaderboards" EntityType="StockXDataBaseModel.Leaderboard" />
   </EntityContainer>
   <EntityType Name="ClientAverageCost">
     <Key>
@@ -20,21 +25,7 @@
     <Property Type="Decimal" Name="AverageCost" Precision="19" Scale="4" />
     <Property Type="Int32" Name="ClientAverageCostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Decimal" Name="SumOfNetPrice" Precision="19" Scale="4" />
-  </EntityType>
-  <EntityType Name="MatchedOrder">
-    <Key>
-      <PropertyRef Name="MatchedOrderID" />
-    </Key>
-    <Property Type="Int32" Name="MatchedOrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="UserId" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="OrderDatetime" Precision="3" />
-    <Property Type="String" Name="Side" MaxLength="8" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="BoardLot" MaxLength="8" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="StockCode" MaxLength="8" FixedLength="false" Unicode="true" />
-    <Property Type="Decimal" Name="Price" Precision="19" Scale="4" />
-    <Property Type="Int32" Name="Quantity" />
-    <Property Type="String" Name="MatchDate" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="MatchedOrderID" />
   </EntityType>
   <EntityType Name="Summary">
     <Key>
@@ -58,5 +49,76 @@
     <Property Type="String" Name="StockCode" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="Volume" />
     <Property Type="Decimal" Name="AverageCost" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="MatchedOrder">
+    <Key>
+      <PropertyRef Name="MatchedOrderID" />
+    </Key>
+    <Property Type="Int32" Name="MatchedOrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserId" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Side" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BoardLot" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StockCode" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Price" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="Quantity" />
+    <Property Type="DateTime" Name="OrderDatetime" Precision="3" />
+    <Property Type="String" Name="MatchDate" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="NetPrice" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="SumOfNetPrice" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="NetVolume" />
+    <Property Type="Decimal" Name="AvgCost" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Cash">
+    <Key>
+      <PropertyRef Name="CashId" />
+    </Key>
+    <Property Type="Int32" Name="CashId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="Margin" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="Withdrawable" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastUpdatedDate" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CashHistory">
+    <Key>
+      <PropertyRef Name="CashId" />
+    </Key>
+    <Property Type="Int32" Name="CashId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="Margin" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="Withdrawable" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastUpdatedDate" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Type="Int32" Name="ClientId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AccountCode" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="InitialCapital" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Portfolio">
+    <Key>
+      <PropertyRef Name="PortfolioId" />
+    </Key>
+    <Property Type="Int32" Name="PortfolioId" Nullable="false" />
+    <Property Type="String" Name="AccountCode" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StockCode" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Shares" />
+    <Property Type="Decimal" Name="Price" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="AvgCost" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Leaderboard">
+    <Key>
+      <PropertyRef Name="LeaderboardId" />
+    </Key>
+    <Property Type="Int32" Name="LeaderboardId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="AccountCode" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Rank" />
+    <Property Type="Decimal" Name="Capital" Precision="19" Scale="4" />
+    <Property Type="Double" Name="PnL" />
   </EntityType>
 </Schema>

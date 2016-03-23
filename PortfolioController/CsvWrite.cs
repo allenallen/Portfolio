@@ -12,6 +12,59 @@ namespace PortfolioController
     {
         private static object syncRoot = new Object();
 
+
+        public static void WritePledge(List<Client> list)
+        {
+            var d = DateTime.Now.ToString("M-dd-yyyy");
+            string path1 = String.Format(ConfigurationManager.AppSettings["txtFilesBackupPath"].ToString() + "pledge-{0}.txt", d);
+            string path2 = ConfigurationManager.AppSettings["txtFilesPath"].ToString() + "pledge.txt";
+            string delimiter = ",";
+            StringBuilder sb = new StringBuilder();
+            //OT9521-7;MARCO N. ACCAD;Unit 406 Danube Bldg., Riverfront Residences Caniogan, Pasig 1606 ;(0917)862-8504 631-8734;0.0025;N;C;5;11011205464539
+
+            foreach (var m in list)
+            {
+                sb.Append(m.AccountCode);
+                sb.Append(delimiter);
+                sb.Append("0.00\r\n");
+            }
+            sb.AppendLine("");
+            sb.AppendLine("");
+            AppendToFile(System.Environment.ExpandEnvironmentVariables(path1), sb.ToString());
+            AppendToFile(System.Environment.ExpandEnvironmentVariables(path2), sb.ToString());
+
+        }
+
+        public static void WriteClient(List<Client> list)
+        {
+            var d = DateTime.Now.ToString("M-dd-yyyy");
+            string path1 = String.Format(ConfigurationManager.AppSettings["txtFilesBackupPath"].ToString() + "clients-{0}.txt", d);
+            string path2 = ConfigurationManager.AppSettings["txtFilesPath"].ToString() + "clients.txt";
+            string delimiter = ";";
+            StringBuilder sb = new StringBuilder();
+            //OT9521-7;MARCO N. ACCAD;Unit 406 Danube Bldg., Riverfront Residences Caniogan, Pasig 1606 ;(0917)862-8504 631-8734;0.0025;N;C;5;11011205464539
+
+            foreach (var m in list)
+            {
+                sb.Append(m.AccountCode);
+                sb.Append(delimiter);
+                sb.Append(m.Name);
+                sb.Append(delimiter);
+
+                string x = "1011119999";
+                int five = m.ClientId;
+                x = x + five.ToString().PadLeft(4, '0');
+
+                sb.Append(String.Format("Makati;(0917)862-8504 631-8734;0.0025;N;C;5;{0}\r\n",x));
+            }
+            sb.AppendLine("");
+            sb.AppendLine("");
+            AppendToFile(System.Environment.ExpandEnvironmentVariables(path1), sb.ToString());
+            AppendToFile(System.Environment.ExpandEnvironmentVariables(path2), sb.ToString());
+
+        }
+
+
         public static void write(MatchedOrder[] list)
         {
             var d = DateTime.Now.ToString("ddMMyyy");
@@ -33,7 +86,7 @@ namespace PortfolioController
             }
 
             AppendToFile(System.Environment.ExpandEnvironmentVariables(path), sb.ToString());
-
+            
         }
 
         public static string data(Dealers dealers)

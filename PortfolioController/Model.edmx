@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StockXDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="StockXDataBaseModelStoreContainer">
+          <EntitySet Name="Cash" EntityType="StockXDataBaseModel.Store.Cash" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CashHistory" EntityType="StockXDataBaseModel.Store.CashHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Client" EntityType="StockXDataBaseModel.Store.Client" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClientAverageCost" EntityType="StockXDataBaseModel.Store.ClientAverageCost" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Leaderboard" EntityType="StockXDataBaseModel.Store.Leaderboard" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MatchedOrder" EntityType="StockXDataBaseModel.Store.MatchedOrder" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Portfolio" EntityType="StockXDataBaseModel.Store.Portfolio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PosCost" EntityType="StockXDataBaseModel.Store.PosCost" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Summary" EntityType="StockXDataBaseModel.Store.Summary" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Cash">
+          <Key>
+            <PropertyRef Name="CashId" />
+          </Key>
+          <Property Name="CashId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Margin" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Withdrawable" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastUpdatedDate" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CashHistory">
+          <Key>
+            <PropertyRef Name="CashId" />
+          </Key>
+          <Property Name="CashId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Margin" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Withdrawable" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastUpdatedDate" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="InitialCapital" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ClientAverageCost">
+          <Key>
+            <PropertyRef Name="ClientAverageCostID" />
+          </Key>
+          <Property Name="Date" Type="nvarchar" MaxLength="100" />
+          <Property Name="Side" Type="nvarchar" MaxLength="8" />
+          <Property Name="Cost" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="Volume" Type="int" />
+          <Property Name="NetVolume" Type="int" />
+          <Property Name="BuyPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="SellPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="AverageCost" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="ClientAverageCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SumOfNetPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="MatchedOrderID" Type="int" />
+        </EntityType>
+        <EntityType Name="Leaderboard">
+          <Key>
+            <PropertyRef Name="LeaderboardId" />
+          </Key>
+          <Property Name="LeaderboardId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Capital" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="PnL" Type="float" />
+        </EntityType>
+        <EntityType Name="MatchedOrder">
+          <Key>
+            <PropertyRef Name="MatchedOrderID" />
+          </Key>
+          <Property Name="MatchedOrderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Side" Type="nvarchar" MaxLength="8" />
+          <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="OrderDatetime" Type="datetime" />
+          <Property Name="MatchDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="NetPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="SumOfNetPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="NetVolume" Type="int" />
+          <Property Name="AvgCost" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="PortfolioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="16" />
+          <Property Name="Shares" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="AvgCost" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="PosCost">
+          <Key>
+            <PropertyRef Name="PosCostID" />
+          </Key>
+          <Property Name="PosCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Volume" Type="int" />
+          <Property Name="AverageCost" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Summary">
+          <Key>
+            <PropertyRef Name="SummaryID" />
+          </Key>
+          <Property Name="SummaryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
+          <Property Name="AveragePriceBuy" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="AveragePriceSell" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="NetQuantity" Type="int" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockXDataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StockXDataBaseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cash" EntityType="StockXDataBaseModel.Cash" />
+          <EntitySet Name="CashHistory" EntityType="StockXDataBaseModel.CashHistory" />
+          <EntitySet Name="Client" EntityType="StockXDataBaseModel.Client" />
+          <EntitySet Name="ClientAverageCost" EntityType="StockXDataBaseModel.ClientAverageCost" />
+          <EntitySet Name="Leaderboard" EntityType="StockXDataBaseModel.Leaderboard" />
+          <EntitySet Name="MatchedOrder" EntityType="StockXDataBaseModel.MatchedOrder" />
+          <EntitySet Name="Portfolio" EntityType="StockXDataBaseModel.Portfolio" />
+          <EntitySet Name="PosCost" EntityType="StockXDataBaseModel.PosCost" />
+          <EntitySet Name="Summary" EntityType="StockXDataBaseModel.Summary" />
+        </EntityContainer>
+        <EntityType Name="Cash">
+          <Key>
+            <PropertyRef Name="CashId" />
+          </Key>
+          <Property Name="CashId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Margin" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Withdrawable" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="AccountCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CashHistory">
+          <Key>
+            <PropertyRef Name="CashId" />
+          </Key>
+          <Property Name="CashId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Margin" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Withdrawable" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="AccountCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="AccountCode" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="InitialCapital" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ClientAverageCost">
+          <Key>
+            <PropertyRef Name="ClientAverageCostID" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Side" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Volume" Type="Int32" />
+          <Property Name="NetVolume" Type="Int32" />
+          <Property Name="BuyPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SellPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AverageCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ClientAverageCostID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SumOfNetPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MatchedOrderID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Leaderboard">
+          <Key>
+            <PropertyRef Name="LeaderboardId" />
+          </Key>
+          <Property Name="LeaderboardId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Capital" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PnL" Type="Double" />
+        </EntityType>
+        <EntityType Name="MatchedOrder">
+          <Key>
+            <PropertyRef Name="MatchedOrderID" />
+          </Key>
+          <Property Name="MatchedOrderID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AccountCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Side" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="BoardLot" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="StockCode" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="OrderDatetime" Type="DateTime" Precision="3" />
+          <Property Name="MatchDate" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="NetPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SumOfNetPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NetVolume" Type="Int32" />
+          <Property Name="AvgCost" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="PortfolioId" Type="Int32" Nullable="false" />
+          <Property Name="AccountCode" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="StockCode" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Shares" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AvgCost" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="PosCost">
+          <Key>
+            <PropertyRef Name="PosCostID" />
+          </Key>
+          <Property Name="PosCostID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="StockCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Volume" Type="Int32" />
+          <Property Name="AverageCost" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Summary">
+          <Key>
+            <PropertyRef Name="SummaryID" />
+          </Key>
+          <Property Name="SummaryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AccountCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="StockCode" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="BoardLot" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="AveragePriceBuy" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AveragePriceSell" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NetQuantity" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockXDataBaseModelStoreContainer" CdmEntityContainer="StockXDataBaseEntities">
+          <EntitySetMapping Name="Cash">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.Cash">
+              <MappingFragment StoreEntitySet="Cash">
+                <ScalarProperty Name="CashId" ColumnName="CashId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Margin" ColumnName="Margin" />
+                <ScalarProperty Name="Withdrawable" ColumnName="Withdrawable" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashHistory">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.CashHistory">
+              <MappingFragment StoreEntitySet="CashHistory">
+                <ScalarProperty Name="CashId" ColumnName="CashId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Margin" ColumnName="Margin" />
+                <ScalarProperty Name="Withdrawable" ColumnName="Withdrawable" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="InitialCapital" ColumnName="InitialCapital" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientAverageCost">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.ClientAverageCost">
+              <MappingFragment StoreEntitySet="ClientAverageCost">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="NetVolume" ColumnName="NetVolume" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
+                <ScalarProperty Name="ClientAverageCostID" ColumnName="ClientAverageCostID" />
+                <ScalarProperty Name="SumOfNetPrice" ColumnName="SumOfNetPrice" />
+                <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaderboard">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.Leaderboard">
+              <MappingFragment StoreEntitySet="Leaderboard">
+                <ScalarProperty Name="LeaderboardId" ColumnName="LeaderboardId" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+                <ScalarProperty Name="PnL" ColumnName="PnL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchedOrder">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.MatchedOrder">
+              <MappingFragment StoreEntitySet="MatchedOrder">
+                <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OrderDatetime" ColumnName="OrderDatetime" />
+                <ScalarProperty Name="MatchDate" ColumnName="MatchDate" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="SumOfNetPrice" ColumnName="SumOfNetPrice" />
+                <ScalarProperty Name="NetVolume" ColumnName="NetVolume" />
+                <ScalarProperty Name="AvgCost" ColumnName="AvgCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.Portfolio">
+              <MappingFragment StoreEntitySet="Portfolio">
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="Shares" ColumnName="Shares" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="AvgCost" ColumnName="AvgCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosCost">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.PosCost">
+              <MappingFragment StoreEntitySet="PosCost">
+                <ScalarProperty Name="PosCostID" ColumnName="PosCostID" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Summary">
+            <EntityTypeMapping TypeName="StockXDataBaseModel.Summary">
+              <MappingFragment StoreEntitySet="Summary">
+                <ScalarProperty Name="SummaryID" ColumnName="SummaryID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+                <ScalarProperty Name="AveragePriceBuy" ColumnName="AveragePriceBuy" />
+                <ScalarProperty Name="AveragePriceSell" ColumnName="AveragePriceSell" />
+                <ScalarProperty Name="NetQuantity" ColumnName="NetQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

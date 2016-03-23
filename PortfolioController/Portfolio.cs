@@ -12,21 +12,13 @@ namespace PortfolioController
     using System;
     using System.Collections.Generic;
     
-    public partial class MatchedOrder
+    public partial class Portfolio
     {
-        public int MatchedOrderID { get; set; }
-        public string UserId { get; set; }
+        public int PortfolioId { get; set; }
         public string AccountCode { get; set; }
-        public string Side { get; set; }
-        public string BoardLot { get; set; }
         public string StockCode { get; set; }
+        public Nullable<int> Shares { get; set; }
         public Nullable<decimal> Price { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<System.DateTime> OrderDatetime { get; set; }
-        public string MatchDate { get; set; }
-        public Nullable<decimal> NetPrice { get; set; }
-        public Nullable<decimal> SumOfNetPrice { get; set; }
-        public Nullable<int> NetVolume { get; set; }
         public Nullable<decimal> AvgCost { get; set; }
     }
 }

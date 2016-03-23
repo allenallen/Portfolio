@@ -13,7 +13,7 @@ namespace PortfolioController
         {
             using(var dbContext = new StockXDataBaseEntities())
             {
-                var posCostTable = dbContext.PosCosts.ToList();
+                var posCostTable = dbContext.PosCost.ToList();
                 return posCostTable;
             }
         }
@@ -22,7 +22,7 @@ namespace PortfolioController
         {
             using (var dbContext = new StockXDataBaseEntities())
             {
-                var summaryTable = dbContext.Summaries.ToList();
+                var summaryTable = dbContext.Summary.ToList();
                 return summaryTable;
             }
         }
@@ -31,7 +31,7 @@ namespace PortfolioController
         {
             using (var dbContext = new StockXDataBaseEntities())
             {
-                var matchedOrderTable = dbContext.MatchedOrders.ToList();
+                var matchedOrderTable = dbContext.MatchedOrder.ToList();
                 return matchedOrderTable;
             }
         }

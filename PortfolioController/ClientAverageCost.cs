@@ -24,5 +24,6 @@ namespace PortfolioController
         public Nullable<decimal> AverageCost { get; set; }
         public int ClientAverageCostID { get; set; }
         public Nullable<decimal> SumOfNetPrice { get; set; }
+        public Nullable<int> MatchedOrderID { get; set; }
     }
 }

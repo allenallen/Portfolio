@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ClientAverageCosts">
       <EntityTypeMapping TypeName="StockXDataBaseModel.ClientAverageCost">
         <MappingFragment StoreEntitySet="ClientAverageCost">
+          <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
           <ScalarProperty Name="SumOfNetPrice" ColumnName="SumOfNetPrice" />
           <ScalarProperty Name="ClientAverageCostID" ColumnName="ClientAverageCostID" />
           <ScalarProperty Name="AverageCost" ColumnName="AverageCost" />
@@ -14,22 +15,6 @@
           <ScalarProperty Name="Cost" ColumnName="Cost" />
           <ScalarProperty Name="Side" ColumnName="Side" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MatchedOrders">
-      <EntityTypeMapping TypeName="StockXDataBaseModel.MatchedOrder">
-        <MappingFragment StoreEntitySet="MatchedOrder">
-          <ScalarProperty Name="MatchDate" ColumnName="MatchDate" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
-          <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
-          <ScalarProperty Name="Side" ColumnName="Side" />
-          <ScalarProperty Name="OrderDatetime" ColumnName="OrderDatetime" />
-          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -55,6 +40,83 @@
           <ScalarProperty Name="StockCode" ColumnName="StockCode" />
           <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
           <ScalarProperty Name="PosCostID" ColumnName="PosCostID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatchedOrders">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.MatchedOrder">
+        <MappingFragment StoreEntitySet="MatchedOrder">
+          <ScalarProperty Name="AvgCost" ColumnName="AvgCost" />
+          <ScalarProperty Name="NetVolume" ColumnName="NetVolume" />
+          <ScalarProperty Name="SumOfNetPrice" ColumnName="SumOfNetPrice" />
+          <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+          <ScalarProperty Name="MatchDate" ColumnName="MatchDate" />
+          <ScalarProperty Name="OrderDatetime" ColumnName="OrderDatetime" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="BoardLot" ColumnName="BoardLot" />
+          <ScalarProperty Name="Side" ColumnName="Side" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MatchedOrderID" ColumnName="MatchedOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cashes">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.Cash">
+        <MappingFragment StoreEntitySet="Cash">
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="Withdrawable" ColumnName="Withdrawable" />
+          <ScalarProperty Name="Margin" ColumnName="Margin" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CashId" ColumnName="CashId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CashHistories">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.CashHistory">
+        <MappingFragment StoreEntitySet="CashHistory">
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="Withdrawable" ColumnName="Withdrawable" />
+          <ScalarProperty Name="Margin" ColumnName="Margin" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CashId" ColumnName="CashId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="InitialCapital" ColumnName="InitialCapital" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Portfolios">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.Portfolio">
+        <MappingFragment StoreEntitySet="Portfolio">
+          <ScalarProperty Name="AvgCost" ColumnName="AvgCost" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Shares" ColumnName="Shares" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leaderboards">
+      <EntityTypeMapping TypeName="StockXDataBaseModel.Leaderboard">
+        <MappingFragment StoreEntitySet="Leaderboard">
+          <ScalarProperty Name="PnL" ColumnName="PnL" />
+          <ScalarProperty Name="Capital" ColumnName="Capital" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="LeaderboardId" ColumnName="LeaderboardId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

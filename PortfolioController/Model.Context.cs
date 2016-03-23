@@ -25,9 +25,14 @@ namespace PortfolioController
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<ClientAverageCost> ClientAverageCosts { get; set; }
-        public DbSet<MatchedOrder> MatchedOrders { get; set; }
-        public DbSet<Summary> Summaries { get; set; }
-        public DbSet<PosCost> PosCosts { get; set; }
+        public DbSet<Cash> Cash { get; set; }
+        public DbSet<CashHistory> CashHistory { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<ClientAverageCost> ClientAverageCost { get; set; }
+        public DbSet<Leaderboard> Leaderboard { get; set; }
+        public DbSet<MatchedOrder> MatchedOrder { get; set; }
+        public DbSet<Portfolio> Portfolio { get; set; }
+        public DbSet<PosCost> PosCost { get; set; }
+        public DbSet<Summary> Summary { get; set; }
     }
 }

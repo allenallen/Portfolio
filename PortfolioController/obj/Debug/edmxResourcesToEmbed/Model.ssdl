@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="StockXDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="StockXDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="StockXDataBaseModelStoreContainer">
-    <EntitySet Name="Cash" EntityType="StockXDataBaseModel.Store.Cash" store:Type="Tables" />
-    <EntitySet Name="CashHistory" EntityType="StockXDataBaseModel.Store.CashHistory" store:Type="Tables" />
-    <EntitySet Name="Client" EntityType="StockXDataBaseModel.Store.Client" store:Type="Tables" />
-    <EntitySet Name="ClientAverageCost" EntityType="StockXDataBaseModel.Store.ClientAverageCost" store:Type="Tables" />
-    <EntitySet Name="Leaderboard" EntityType="StockXDataBaseModel.Store.Leaderboard" store:Type="Tables" />
-    <EntitySet Name="MatchedOrder" EntityType="StockXDataBaseModel.Store.MatchedOrder" store:Type="Tables" />
-    <EntitySet Name="Portfolio" EntityType="StockXDataBaseModel.Store.Portfolio" store:Type="Tables" />
-    <EntitySet Name="PosCost" EntityType="StockXDataBaseModel.Store.PosCost" store:Type="Tables" />
-    <EntitySet Name="Summary" EntityType="StockXDataBaseModel.Store.Summary" store:Type="Tables" />
+    <EntitySet Name="Cash" EntityType="StockXDataBaseModel.Store.Cash" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CashHistory" EntityType="StockXDataBaseModel.Store.CashHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Client" EntityType="StockXDataBaseModel.Store.Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientAverageCost" EntityType="StockXDataBaseModel.Store.ClientAverageCost" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Leaderboard" EntityType="StockXDataBaseModel.Store.Leaderboard" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MatchedOrder" EntityType="StockXDataBaseModel.Store.MatchedOrder" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Portfolio" EntityType="StockXDataBaseModel.Store.Portfolio" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PosCost" EntityType="StockXDataBaseModel.Store.PosCost" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Summary" EntityType="StockXDataBaseModel.Store.Summary" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
   <EntityType Name="Cash">
     <Key>
       <PropertyRef Name="CashId" />
     </Key>
     <Property Name="CashId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Amount" Type="numeric" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="Margin" Type="numeric" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="Withdrawable" Type="numeric" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Margin" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Withdrawable" Type="decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
     <Property Name="LastUpdatedDate" Type="nvarchar" MaxLength="100" />
   </EntityType>
@@ -27,9 +27,9 @@
       <PropertyRef Name="CashId" />
     </Key>
     <Property Name="CashId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Amount" Type="numeric" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="Margin" Type="numeric" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="Withdrawable" Type="numeric" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Margin" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Withdrawable" Type="decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
     <Property Name="LastUpdatedDate" Type="nvarchar" MaxLength="100" />
   </EntityType>
@@ -40,22 +40,22 @@
     <Property Name="ClientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
     <Property Name="AccountCode" Type="nvarchar" MaxLength="255" />
-    <Property Name="InitialCapital" Type="money" />
+    <Property Name="InitialCapital" Type="decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="ClientAverageCost">
     <Key>
       <PropertyRef Name="ClientAverageCostID" />
     </Key>
+    <Property Name="Date" Type="nvarchar" MaxLength="100" />
     <Property Name="Side" Type="nvarchar" MaxLength="8" />
-    <Property Name="Cost" Type="money" />
+    <Property Name="Cost" Type="decimal" Precision="19" Scale="4" />
     <Property Name="Volume" Type="int" />
     <Property Name="NetVolume" Type="int" />
-    <Property Name="BuyPrice" Type="money" />
-    <Property Name="SellPrice" Type="money" />
-    <Property Name="AverageCost" Type="money" />
+    <Property Name="BuyPrice" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="SellPrice" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="AverageCost" Type="decimal" Precision="19" Scale="4" />
     <Property Name="ClientAverageCostID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Date" Type="nvarchar" MaxLength="100" />
-    <Property Name="SumOfNetPrice" Type="money" />
+    <Property Name="SumOfNetPrice" Type="decimal" Precision="19" Scale="4" />
     <Property Name="MatchedOrderID" Type="int" />
   </EntityType>
   <EntityType Name="Leaderboard">
@@ -65,7 +65,7 @@
     <Property Name="LeaderboardId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
     <Property Name="Rank" Type="int" />
-    <Property Name="Capital" Type="numeric" Precision="19" Scale="4" />
+    <Property Name="Capital" Type="decimal" Precision="19" Scale="4" />
     <Property Name="PnL" Type="float" />
   </EntityType>
   <EntityType Name="MatchedOrder">
@@ -78,14 +78,14 @@
     <Property Name="Side" Type="nvarchar" MaxLength="8" />
     <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
     <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
-    <Property Name="Price" Type="money" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
     <Property Name="Quantity" Type="int" />
     <Property Name="OrderDatetime" Type="datetime" />
     <Property Name="MatchDate" Type="nvarchar" MaxLength="100" />
-    <Property Name="NetPrice" Type="money" />
-    <Property Name="SumOfNetPrice" Type="money" />
+    <Property Name="NetPrice" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="SumOfNetPrice" Type="decimal" Precision="19" Scale="4" />
     <Property Name="NetVolume" Type="int" />
-    <Property Name="AvgCost" Type="money" />
+    <Property Name="AvgCost" Type="decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="Portfolio">
     <Key>
@@ -95,8 +95,8 @@
     <Property Name="AccountCode" Type="nvarchar" MaxLength="128" />
     <Property Name="StockCode" Type="nvarchar" MaxLength="16" />
     <Property Name="Shares" Type="int" />
-    <Property Name="Price" Type="numeric" Precision="19" Scale="4" />
-    <Property Name="AvgCost" Type="money" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="AvgCost" Type="decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="PosCost">
     <Key>
@@ -106,7 +106,7 @@
     <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
     <Property Name="StockCode" Type="nvarchar" MaxLength="100" />
     <Property Name="Volume" Type="int" />
-    <Property Name="AverageCost" Type="money" />
+    <Property Name="AverageCost" Type="decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="Summary">
     <Key>
@@ -117,8 +117,8 @@
     <Property Name="AccountCode" Type="nvarchar" MaxLength="100" />
     <Property Name="StockCode" Type="nvarchar" MaxLength="8" />
     <Property Name="BoardLot" Type="nvarchar" MaxLength="8" />
-    <Property Name="AveragePriceBuy" Type="money" />
-    <Property Name="AveragePriceSell" Type="money" />
+    <Property Name="AveragePriceBuy" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="AveragePriceSell" Type="decimal" Precision="19" Scale="4" />
     <Property Name="NetQuantity" Type="int" />
   </EntityType>
 </Schema>
