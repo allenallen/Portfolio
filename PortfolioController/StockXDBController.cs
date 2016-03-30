@@ -37,8 +37,6 @@ namespace PortfolioController
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    if (reader != null)
-                        Console.WriteLine("not null");
                     MatchedOrder order = null;
                     while (reader.Read())
                     {
@@ -54,8 +52,10 @@ namespace PortfolioController
                         order.StockCode = (string)reader["STOCKCODE"];
                         order.BoardLot = (string)reader["BOARDLOT"];
                         order.Price = (decimal?)reader["PRICE"];
-                        var q = (Int64)reader["QUANTITY"];
-                        order.Quantity = Convert.ToInt16(q);
+                        //var q = (long)reader["QUANTITY"];
+                        var q = reader.GetInt64(7);
+                        order.Quantity = Convert.ToInt32(q);
+                        //order.Quantity = Convert.ToInt32(reader["QUANTITY"]);
                         //order.Side = (string)reader["SIDE"];
                         //for (int i = 0; i < fieldCount; i++)
                         //{
@@ -70,6 +70,17 @@ namespace PortfolioController
                     Console.WriteLine(ex.Message);
                 }
                 return list;
+            }
+        }
+        private Client GetClient(string accountCode)
+        {
+            using(var dbContext = new StockXDataBaseEntities())
+            {
+                Client c = (from client in dbContext.Client
+                           where client.AccountCode == accountCode
+                           select client).SingleOrDefault();
+                
+                return c;
             }
         }
         public void GenerateSOA(DateTime date)
@@ -89,9 +100,12 @@ namespace PortfolioController
             StringBuilder text = new StringBuilder();
             foreach (string account in accounts)
             {
+                Client client = GetClient(account);
+                
                 if (!account.StartsWith("TEST"))
                 {
-                    //add where clause o.AccountCode != account.startsWith("TEST")
+                    decimal initialCapital = (decimal)client.InitialCapital;
+                    
                     var transactions = allRecords.Where(o => o.AccountCode == account).ToList();
                     var datesOfTransactions = transactions.Select(o => o.MatchDate).Distinct().ToList();
                     foreach (string dates in datesOfTransactions)
@@ -99,20 +113,14 @@ namespace PortfolioController
                         var listOfStocksPerDate = transactions.Where(o => o.MatchDate == dates).Select(o => o.StockCode).Distinct().ToList();
                         foreach (string stock in listOfStocksPerDate)
                         {
-                            string buy = null;
-                            string sell = null;
-
                             List<MatchedOrder> buyTransactionsAccountPerStockPerDate =
                                         transactions.Where(o => o.MatchDate == dates && o.StockCode == stock && o.Side == "B").ToList();
 
                             List<MatchedOrder> sellTransactionsAccountPerStockPerDate =
                                         transactions.Where(o => o.MatchDate == dates && o.StockCode == stock && o.Side == "S").ToList();
 
-                            buy = WriteToStringBuyTransactions(buyTransactionsAccountPerStockPerDate);
-                            sell = WriteToStringSellTransactions(sellTransactionsAccountPerStockPerDate);
-
-                            if (buy != null) text.AppendLine(buy);
-                            if (sell != null) text.AppendLine(sell);
+                            WriteToStringBuyTransactions(text, client, buyTransactionsAccountPerStockPerDate);
+                            WriteToStringSellTransactions(text, client, sellTransactionsAccountPerStockPerDate);
                         }
                     }
                 }
@@ -121,7 +129,7 @@ namespace PortfolioController
             text.AppendLine("");
             return text.ToString();
         }
-        private string WriteToStringSellTransactions(List<MatchedOrder> list)
+        private void WriteToStringSellTransactions(StringBuilder text, Client client,List<MatchedOrder> list)
         {
             string lines = null;
             StringBuilder s = new StringBuilder();
@@ -134,8 +142,10 @@ namespace PortfolioController
                     if (i == 0 && list.Count == 1)
                     {
                         string padded = list[i].MatchedOrderID.ToString().PadLeft(5,'0');
+                        client.InitialCapital = (decimal)(client.InitialCapital + (list[i].Quantity * list[i].Price));
                         s.Append(String.Format("{0};{1};SI-1{2};Sale of {3} {4} shares @ {5};-{6};{7};{8};{9}", list[i].AccountCode, list[i].MatchDate,
-                            padded,list[i].StockCode, list[i].Quantity, list[i].Price,list[i].Quantity,list[i].Price,list[i].Quantity*list[i].Price,0));
+                            padded, list[i].StockCode, list[i].Quantity, list[i].Price, list[i].Quantity, list[i].Price, list[i].Quantity * list[i].Price, client.InitialCapital));
+                        
                     }
                     else if(i == 0 && list.Count > 1)
                     {
@@ -151,16 +161,17 @@ namespace PortfolioController
                     {
                         totalVolume = (int)list.Sum(o => o.Quantity);
                         avgPrice = (decimal)(list.Sum(o => o.Price)/list.Count);
+                        client.InitialCapital = (decimal)(client.InitialCapital + (totalVolume * avgPrice));
                         s.Append(String.Format(", {0} shares @ {1};-{2};{3};{4};{5}", list[i].Quantity, list[i].Price,totalVolume, avgPrice
-                                                                                    , totalVolume * avgPrice, 0));
+                                                                                    , totalVolume * avgPrice, client.InitialCapital));
+                       
                     }
                 }
                 lines = s.ToString();
+                if (lines != null) text.AppendLine(lines);
             }
-
-            return lines;
         }
-        private string WriteToStringBuyTransactions(List<MatchedOrder> list)
+        private void WriteToStringBuyTransactions(StringBuilder text, Client client, List<MatchedOrder> list)
         {
             string lines = null;
             StringBuilder s = new StringBuilder();
@@ -173,8 +184,10 @@ namespace PortfolioController
                     if (i == 0 && list.Count == 1)
                     {
                         string padded = list[i].MatchedOrderID.ToString().PadLeft(5, '0');
+                        client.InitialCapital = (decimal)(client.InitialCapital - (list[i].Quantity * list[i].Price));
                         s.Append(String.Format("{0};{1};BI-1{2};Purchase of {3} {4} shares @ {5};{6};{7};{8};{9}", list[i].AccountCode, list[i].MatchDate,
-                            padded, list[i].StockCode, list[i].Quantity, list[i].Price, list[i].Quantity, list[i].Price, list[i].Quantity * list[i].Price, 0));
+                            padded, list[i].StockCode, list[i].Quantity, list[i].Price, list[i].Quantity, list[i].Price, list[i].Quantity * list[i].Price, client.InitialCapital));
+                       
                     }
                     else if (i == 0 && list.Count > 1)
                     {
@@ -190,14 +203,15 @@ namespace PortfolioController
                     {
                         totalVolume = (int)list.Sum(o => o.Quantity);
                         avgPrice = (decimal)(list.Sum(o => o.Price) / list.Count);
+                        client.InitialCapital = (decimal)(client.InitialCapital - (totalVolume * avgPrice));
                         s.Append(String.Format(", {0} shares @ {1};{2};{3};{4};{5}", list[i].Quantity, list[i].Price, totalVolume, avgPrice
-                                                                                    , totalVolume * avgPrice, 0));
+                                                                                    , totalVolume * avgPrice, client.InitialCapital));
+                       
                     }
                 }
                 lines = s.ToString();
+                if (lines != null) text.AppendLine(lines);
             }
-
-            return lines;
         }
         private string FormatSell(MatchedOrder o)
         {
@@ -861,7 +875,7 @@ namespace PortfolioController
             s.AppendLine("");
             s.AppendLine("");
             var soaPath = ConfigurationManager.AppSettings["txtFilesPath"].ToString() + "cash.txt";
-            var soaPathwDate = String.Format("{0}cash-{1}-{2}-{3}.txt", ConfigurationManager.AppSettings["txtFilesPath"].ToString(), date.Year, date.Month, date.Day);
+            var soaPathwDate = String.Format("{0}cash-{1}-{2}-{3}.txt", ConfigurationManager.AppSettings["txtFilesBackupPath"].ToString(), date.Year, date.Month, date.Day);
 
             File.WriteAllText(soaPath, s.ToString());
             File.WriteAllText(soaPathwDate, s.ToString());

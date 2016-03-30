@@ -49,7 +49,7 @@ namespace PortfolioController
                     Console.WriteLine(ex.Message);
                 }
 
-                Summary s = null;
+                //Summary s = null;
                 //AverageCostCalculator ac = new AverageCostCalculator("BUY",s);
                 //Console.WriteLine(ac.AvgCost);
 

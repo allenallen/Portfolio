@@ -55,6 +55,8 @@ namespace PortfolioController
             }
             catch (Exception ex)
             {
+                Console.Write(ex.Message
+                    );
                 return null;
             }
         }

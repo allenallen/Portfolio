@@ -38,6 +38,12 @@ namespace PortfolioController
         public static void WriteClient(List<Client> list)
         {
             var d = DateTime.Now.ToString("M-dd-yyyy");
+            if (!Directory.Exists(ConfigurationManager.AppSettings["txtFilesPath"].ToString()))
+                Directory.CreateDirectory(ConfigurationManager.AppSettings["txtFilesPath"].ToString());
+
+            if (!Directory.Exists(ConfigurationManager.AppSettings["txtFilesBackupPath"].ToString()))
+                Directory.CreateDirectory(ConfigurationManager.AppSettings["txtFilesBackupPath"].ToString());
+
             string path1 = String.Format(ConfigurationManager.AppSettings["txtFilesBackupPath"].ToString() + "clients-{0}.txt", d);
             string path2 = ConfigurationManager.AppSettings["txtFilesPath"].ToString() + "clients.txt";
             string delimiter = ";";
@@ -214,8 +220,15 @@ namespace PortfolioController
 
         internal static void WriteLeaders(List<Leaderboard> list)
         {
+            //TODO: change this to a parameter. don't assume that it will today's date
             var d = DateTime.Now.ToString("M-dd-yyyy");
+
+            if (!Directory.Exists(ConfigurationManager.AppSettings["leaderboardTxtFile"].ToString()))
+                Directory.CreateDirectory(ConfigurationManager.AppSettings["leaderboardTxtFile"].ToString());
+
             string path1 = String.Format(ConfigurationManager.AppSettings["leaderboardTxtFile"].ToString() + "leaderboard-{0}.txt", d);
+            
+
             string delimiter = ";";
             StringBuilder sb = new StringBuilder();
             
